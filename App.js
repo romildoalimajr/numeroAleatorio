@@ -1,20 +1,54 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { useState } from 'react';
+import { 
+  Text, 
+  SafeAreaView, 
+  TouchableOpacity,
+  StyleSheet 
+} from 'react-native';
 
-export default function App() {
+const App = () => {
+  const [numero, setNumero] = useState(0);
+
+  function handleNumero(){
+    const newNumero = Math.floor(Math.random() * 10000);
+
+    setNumero(newNumero);
+  }
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    
+      <SafeAreaView style={style.container}>
+        <Text style={style.numero}>{numero}</Text>
+        <TouchableOpacity onPress={handleNumero} style={style.botao}>
+          <Text>Gerar Número</Text>
+        </TouchableOpacity>
+      </SafeAreaView>
+    
   );
-}
+};
 
-const styles = StyleSheet.create({
+const style = StyleSheet.create({
   container: {
+    backgroundColor: '#ff00bb',
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
     justifyContent: 'center',
+    alignItems: 'center',
+  },
+  numero: {
+    fontSize: 38,
+    color: '#fff',
+    fontWeight: 'bold',
+  },
+  botao: {
+    backgroundColor: '#fff',
+    width: '80%',
+    paddingHorizontal: 5,
+    paddingVertical: 10, 
+    borderRadius: 5,
+    borderColor:'yellow',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });
+
+export default App;
